@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Jquery 를 로드 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        // jQuery 함수는 $()를 많이 사용.
+        jQuery(function(){ // function 은 페이지가 로드될 떄 함수를 실행한다는 의미.
+            // 함수가 호출될 때 실행할 코드 입력
+            // p태그를 선택해서 제어
+            $('p').html('<b>1234</b>')
+        })
+
+        function a(){
+            // alert("test")
+
+            //ul태그 중에 class 값이 first인 태그를 선택
+            $("ul.first")
+            // ul태그안에 class가 foo인 태그를 선택
+            .find(".foo")
+            //배경색을 red로 변경
+            .css('backgroundColor','red')
+            .end() // 찾는 함수를 종료해줘야, 다음에 다른걸 또 찾아 적용할 수 있음.
+            .find(".bar")
+            .css('backgroundColor','yellow')
+            .end()
+        }
+        
+    </script>
+
+</head>
+<body onload="a()">
+    <p></p>
+    <p></p>
+
+    <ul class="first">
+        <li class="foo">List1</li>
+        <li>List2</li>
+        <li class="bar">List3</li>
+    </ul>
+
+    <ul class="second">
+        <li class="foo">List1</li>
+        <li>List2</li>
+        <li class="bar">List3</li>
+    </ul>
+</body>
+</html>

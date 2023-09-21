@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Jquery 를 로드 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function(){
+            //button 태그 선택
+            $('button')
+            //button을 클릭했을 때
+            .click(function(){
+                //p태그를 선택하여 css에 display를 none
+                //$('p')
+                //.css('display','none')
+                //p태그를 숨긴다
+                //$('p').hide()
+                //p태그를 선택하여 class 값이 a가 존재하면 삭제, 존재하지않으면 추가
+                $('p').toggleClass('a')
+
+            })
+        })
+    </script>
+    <style>
+        .a {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <p class="a">
+        Hello
+    </p>
+    world
+    <button>삭제</button>
+
+</body>
+</html>
