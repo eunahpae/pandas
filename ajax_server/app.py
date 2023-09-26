@@ -1,5 +1,5 @@
 # 라이브러리 로드
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect
 import pymysql
 
 _db = pymysql.connect(        
@@ -50,7 +50,7 @@ def check_id():
     result = cursor.fetchall()
     
     # 아이디가 존재한다면 result 길이가 1
-    if (len(result) == 1):
+    if (len(result) == 1) | (_id==""):
         data = {
             'able' : False
         }
@@ -59,6 +59,30 @@ def check_id():
             'able' : True
         }
     return jsonify(data)
+
+@app.route('/signup', methods=['POST'])
+def signup():
+    _id = request.form.get('input_id')
+    _pass = request.form.get('input_pass')
+    _name = request.form.get('input_name')
+    _loc = request.form.get('input_loc')
+    print(_id,_pass,_name,_loc)
+    
+    sql = """
+        INSERT
+        INTO
+        user_list
+        VALUES (%s,%s,%s,%s)
+        """
+    value = [_id,_pass,_name,_loc]
+    cursor.execute(sql, value)
+    _db.commit()
+    return redirect("/login")
+
+@app.route('/login')
+def login():
+    return render_template('index.html')
+    
 
 
 
